@@ -89,17 +89,9 @@ var projects = {
   projects: [{
     title: 'Portfolio',
     dates: '10.02.2017 - 20.02.2017',
-    description: 'Build a Portfolio',
+    description: 'Build A Portfolio',
     images: [
-      'images/fry.jpg'
-    ]
-  }, {
-    title: 'Resume',
-    dates: '10.02.2017 - 20.02.2017',
-    description: 'Build a Resume',
-    images: [
-      'images/fry.jpg',
-      'images/fry.jpg'
+      'images/portfolio-400_small.png'
     ]
   }],
   display: function () {
