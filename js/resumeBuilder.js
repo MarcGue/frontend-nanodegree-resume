@@ -14,19 +14,15 @@ var bio = {
     skills: [
         'HTML', 'CSS', 'JavaScript', 'JQuery'
     ],
-    bioPic: 'images/fry.jpg',
+    biopic: 'images/fry.jpg',
     display: function() {
         var formattedRole = HTMLheaderRole.replace('%data%', bio.role);
-        $('#header').prepend(formattedRole);
-
         var formattedName = HTMLheaderName.replace('%data%', bio.name);
-        $('#header').prepend(formattedName);
+        $('#header').prepend(formattedName, formattedRole);
 
-        var formattedBioPic = HTMLbioPic.replace('%data%', bio.bioPic);
-        $('#header').append(formattedBioPic);
-
+        var formattedBioPic = HTMLbioPic.replace('%data%', bio.biopic);
         var formattedWelcomeMessage = HTMLwelcomeMsg.replace('%data%', bio.welcomeMessage);
-        $('#header').append(formattedWelcomeMessage);
+        $('#header').append(formattedBioPic, formattedWelcomeMessage);
 
         $('#header').append(HTMLskillsStart);
         bio.skills.forEach(function(skill) {
@@ -34,20 +30,11 @@ var bio = {
         });
 
         var formattedMobile = HTMLmobile.replace('%data%', bio.contacts.mobile);
-        $('#topContacts').append(formattedMobile);
-        $('#footerContacts').append(formattedMobile);
-
         var formattedEmail = HTMLemail.replace('%data%', bio.contacts.email);
-        $('#topContacts').append(formattedEmail);
-        $('#footerContacts').append(formattedEmail);
-
         var formattedGitHub = HTMLgithub.replace('%data%', bio.contacts.github);
-        $('#topContacts').append(formattedGitHub);
-        $('#footerContacts').append(formattedGitHub);
-
         var formattedLocation = HTMLlocation.replace('%data%', bio.contacts.location);
-        $('#topContacts').append(formattedLocation);
-        $('#footerContacts').append(formattedLocation);
+        $('#topContacts').append(formattedMobile, formattedEmail, formattedGitHub, formattedLocation);
+        $('#footerContacts').append(formattedMobile, formattedEmail, formattedGitHub, formattedLocation);
 
         $('#mapDiv').append(googleMap);
     }
@@ -74,13 +61,11 @@ var work = {
             var formattedWorkEmployer = HTMLworkEmployer.replace('%data%', job.employer);
             var formattedWorkTitle = HTMLworkTitle.replace('%data%', job.title);
             var formattedWorkEmployerTitle = formattedWorkEmployer + formattedWorkTitle;
-            $('.work-entry:last').append(formattedWorkEmployerTitle);
 
             var formattedWorkDates = HTMLworkDates.replace('%data%', job.dates);
-            $('.work-entry:last').append(formattedWorkDates);
-
             var formattedDescription = HTMLworkDescription.replace('%data%', job.description);
-            $('.work-entry:last').append(formattedDescription);
+            var formattedLocation = HTMLworkLocation.replace('%data', job.location);
+            $('.work-entry:last').append(formattedWorkEmployerTitle, formattedLocation, formattedWorkDates, formattedDescription);
         });
     }
 };
@@ -99,13 +84,9 @@ var projects = {
             $('#projects').append(HTMLprojectStart);
 
             var formattedProjectTitle = HTMLprojectTitle.replace('%data%', project.title);
-            $('.project-entry:last').append(formattedProjectTitle);
-
             var formattedProjectDates = HTMLprojectDates.replace('%data%', project.dates);
-            $('.project-entry:last').append(formattedProjectDates);
-
             var formattedProjectDescription = HTMLprojectDescription.replace('%data%', project.description);
-            $('.project-entry:last').append(formattedProjectDescription);
+            $('.project-entry:last').append(formattedProjectTitle, formattedProjectDates, formattedProjectDescription);
 
             if (project.images.length > 0) {
                 project.images.forEach(function(image) {
@@ -129,7 +110,8 @@ var education = {
         degree: 'Oberstufenreife',
         dates: '01.09.1992 - 01.09.2007',
         location: 'Bielingplatz 2, 90419 Nürnberg',
-        major: 'Wirtschaft & Chemie'
+        majors: ["Wirtschaft", "Chemie"],
+        url: ''
     }],
     onlineCourses: [{
         title: 'Front-Ent Web Developer Nanodegree',
@@ -146,13 +128,9 @@ var education = {
             $('.education-entry:last').append(formattedSchoolName + formattedSchoolDegree);
 
             var formattedSchoolDates = HTMLschoolDates.replace('%data%', school.dates);
-            $('.education-entry:last').append(formattedSchoolDates);
-
             var formattedSchoolLocation = HTMLschoolLocation.replace('%data%', school.location);
-            $('.education-entry:last').append(formattedSchoolLocation);
-
-            var formattedSchoolMajor = HTMLschoolMajor.replace('%data%', school.major);
-            $('.education-entry:last').append(formattedSchoolMajor);
+            var formattedSchoolMajor = HTMLschoolMajor.replace('%data%', school.majors);
+            $('.education-entry:last').append(formattedSchoolDates, formattedSchoolLocation, formattedSchoolMajor);
         });
 
         $('#education').append(HTMLonlineClasses);
