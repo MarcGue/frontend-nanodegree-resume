@@ -64,7 +64,7 @@ var work = {
 
             var formattedWorkDates = HTMLworkDates.replace('%data%', job.dates);
             var formattedDescription = HTMLworkDescription.replace('%data%', job.description);
-            var formattedLocation = HTMLworkLocation.replace('%data', job.location);
+            var formattedLocation = HTMLworkLocation.replace('%data%', job.location);
             $('.work-entry:last').append(formattedWorkEmployerTitle, formattedLocation, formattedWorkDates, formattedDescription);
         });
     }
@@ -104,14 +104,15 @@ var education = {
         degree: 'IT-Systemkaufmann',
         dates: '01.09.2007 - 31.07.2010',
         location: 'Hansastraße 7A, 90441 Nürnberg',
-        major: 'IT-Systemkaufmann'
+        majors: ['IT-Systemkaufmann'],
+        url: 'https://www.telekom.de'
     }, {
         name: 'Peter-Vischer-Gymnasium',
         degree: 'Oberstufenreife',
         dates: '01.09.1992 - 01.09.2007',
         location: 'Bielingplatz 2, 90419 Nürnberg',
         majors: ["Wirtschaft", "Chemie"],
-        url: ''
+        url: 'http://www.petervischerschule.de'
     }],
     onlineCourses: [{
         title: 'Front-Ent Web Developer Nanodegree',
@@ -124,6 +125,8 @@ var education = {
             $('#education').append(HTMLschoolStart);
 
             var formattedSchoolName = HTMLschoolName.replace('%data%', school.name);
+            formattedSchoolName = formattedSchoolName.replace('#', school.url);
+
             var formattedSchoolDegree = HTMLschoolDegree.replace('%data%', school.degree);
             $('.education-entry:last').append(formattedSchoolName + formattedSchoolDegree);
 
@@ -143,10 +146,10 @@ var education = {
             $('.education-entry:last').append(formattedClassTitle + formattedClassSchool);
 
             var formattedClassDates = HTMLonlineDates.replace('%data%', onlineClass.dates);
-            $('.education-entry:last').append(formattedClassDates);
-
             var formattedClassURL = HTMLonlineURL.replace('%data%', onlineClass.url);
-            $('.education-entry:last').append(formattedClassURL);
+            formattedClassURL = formattedClassURL.replace('#', onlineClass.url);
+            
+            $('.education-entry:last').append(formattedClassDates, formattedClassURL);
         });
     }
 };
